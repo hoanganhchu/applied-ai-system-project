@@ -1,0 +1,97 @@
+<svg width="100%" viewBox="0 0 680 580" xmlns="http://www.w3.org/2000/svg" role="img">
+<title>Applied AI Music Recommender — System Architecture</title>
+<desc>Flowchart showing the RAG and agentic workflow: User Profile → Agent Plan → Retriever → Scorer → Agent Reflect → Output</desc>
+<defs>
+  <marker id="arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+    <path d="M2 1L8 5L2 9" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+  </marker>
+  <style>
+    text { font-family: sans-serif; fill: #1a1a1a; }
+    .th { font-size: 14px; font-weight: 500; }
+    .ts { font-size: 12px; fill: #555; }
+    .box-purple { fill: #EEEDFE; stroke: #534AB7; }
+    .box-teal   { fill: #E1F5EE; stroke: #0F6E56; }
+    .box-blue   { fill: #E6F1FB; stroke: #185FA5; }
+    .box-amber  { fill: #FAEEDA; stroke: #854F0B; }
+    .box-green  { fill: #EAF3DE; stroke: #3B6D11; }
+    .box-gray   { fill: #F1EFE8; stroke: #5F5E5A; }
+    .arr { stroke: #555; stroke-width: 1.5; fill: none; }
+  </style>
+</defs>
+
+<text class="th" x="340" y="26" text-anchor="middle">Applied AI Music Recommender — System Architecture</text>
+
+<!-- User Profile -->
+<rect x="220" y="44" width="240" height="50" rx="8" stroke-width="0.5" class="box-purple"/>
+<text class="th" x="340" y="63" text-anchor="middle" dominant-baseline="central">User Profile</text>
+<text class="ts" x="340" y="81" text-anchor="middle" dominant-baseline="central">genre · mood · energy · valence</text>
+
+<line x1="340" y1="94" x2="340" y2="120" class="arr" marker-end="url(#arrow)"/>
+
+<!-- Agent container -->
+<rect x="50" y="122" width="580" height="230" rx="12" fill="none" stroke="#aaa" stroke-width="1" stroke-dasharray="6 3"/>
+<text class="ts" x="64" y="140" dominant-baseline="central">Agent — Plan / Act / Reflect loop</text>
+
+<!-- PLAN -->
+<rect x="72" y="152" width="160" height="56" rx="8" stroke-width="0.5" class="box-teal"/>
+<text class="th" x="152" y="174" text-anchor="middle" dominant-baseline="central">PLAN</text>
+<text class="ts" x="152" y="192" text-anchor="middle" dominant-baseline="central">Set retrieval strategy</text>
+
+<line x1="232" y1="180" x2="260" y2="180" class="arr" marker-end="url(#arrow)"/>
+
+<!-- ACT -->
+<rect x="262" y="152" width="170" height="56" rx="8" stroke-width="0.5" class="box-blue"/>
+<text class="th" x="347" y="174" text-anchor="middle" dominant-baseline="central">ACT</text>
+<text class="ts" x="347" y="192" text-anchor="middle" dominant-baseline="central">Retrieve → Score</text>
+
+<line x1="432" y1="180" x2="460" y2="180" class="arr" marker-end="url(#arrow)"/>
+
+<!-- REFLECT -->
+<rect x="462" y="152" width="150" height="56" rx="8" stroke-width="0.5" class="box-amber"/>
+<text class="th" x="537" y="174" text-anchor="middle" dominant-baseline="central">REFLECT</text>
+<text class="ts" x="537" y="192" text-anchor="middle" dominant-baseline="central">Confidence ≥ 0.45?</text>
+
+<!-- Retry arrow -->
+<path d="M537 208 L537 290 L152 290 L152 208" fill="none" stroke="#aaa" stroke-width="1" stroke-dasharray="5 3" marker-end="url(#arrow)"/>
+<text class="ts" x="344" y="308" text-anchor="middle">retry: relax filters</text>
+
+<!-- Retriever -->
+<rect x="72" y="336" width="252" height="56" rx="8" stroke-width="0.5" class="box-teal"/>
+<text class="th" x="198" y="356" text-anchor="middle" dominant-baseline="central">Retriever (RAG)</text>
+<text class="ts" x="198" y="374" text-anchor="middle" dominant-baseline="central">Energy band · genre/mood · fallback</text>
+
+<!-- Song catalog -->
+<rect x="72" y="420" width="252" height="44" rx="8" stroke-width="0.5" class="box-gray"/>
+<text class="th" x="198" y="447" text-anchor="middle" dominant-baseline="central">songs.csv (25-song catalog)</text>
+<line x1="198" y1="420" x2="198" y2="392" class="arr" marker-end="url(#arrow)"/>
+
+<line x1="324" y1="364" x2="356" y2="364" class="arr" marker-end="url(#arrow)"/>
+
+<!-- Scorer -->
+<rect x="358" y="336" width="252" height="56" rx="8" stroke-width="0.5" class="box-blue"/>
+<text class="th" x="484" y="356" text-anchor="middle" dominant-baseline="central">Scorer</text>
+<text class="ts" x="484" y="374" text-anchor="middle" dominant-baseline="central">Weighted genre·mood·energy·valence</text>
+
+<line x1="290" y1="208" x2="198" y2="336" class="arr" marker-end="url(#arrow)"/>
+<line x1="484" y1="336" x2="490" y2="210" class="arr" marker-end="url(#arrow)"/>
+
+<!-- Output -->
+<rect x="220" y="490" width="240" height="56" rx="8" stroke-width="0.5" class="box-purple"/>
+<text class="th" x="340" y="510" text-anchor="middle" dominant-baseline="central">Top-K Recommendations</text>
+<text class="ts" x="340" y="528" text-anchor="middle" dominant-baseline="central">Score · Confidence · Reasons</text>
+
+<line x1="537" y1="208" x2="537" y2="450" fill="none" stroke="#ccc" stroke-width="1"/>
+<line x1="537" y1="450" x2="460" y2="518" class="arr" marker-end="url(#arrow)"/>
+
+<!-- Test Harness -->
+<rect x="490" y="490" width="148" height="44" rx="8" stroke-width="0.5" class="box-green"/>
+<text class="th" x="564" y="507" text-anchor="middle" dominant-baseline="central">Test Harness</text>
+<text class="ts" x="564" y="523" text-anchor="middle" dominant-baseline="central">8 cases · confidence</text>
+<line x1="490" y1="512" x2="460" y2="515" class="arr" marker-end="url(#arrow)"/>
+
+<!-- Logger -->
+<rect x="42" y="490" width="140" height="44" rx="8" stroke-width="0.5" class="box-gray"/>
+<text class="th" x="112" y="507" text-anchor="middle" dominant-baseline="central">Logger</text>
+<text class="ts" x="112" y="523" text-anchor="middle" dominant-baseline="central">recommender.log</text>
+<line x1="182" y1="512" x2="220" y2="512" class="arr" marker-end="url(#arrow)"/>
+</svg>

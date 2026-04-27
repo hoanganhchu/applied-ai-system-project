@@ -1,0 +1,26 @@
+id,title,artist,genre,mood,energy,tempo_bpm,valence,danceability,acousticness
+1,Sunrise City,The Dawnbreakers,pop,happy,0.85,128,0.90,0.88,0.10
+2,Library Rain,Soft Hours,lofi,chill,0.30,75,0.45,0.55,0.75
+3,Storm Runner,Voltage,rock,intense,0.92,142,0.35,0.50,0.05
+4,Midnight Coding,Binary Dreams,lofi,chill,0.25,70,0.40,0.50,0.80
+5,Gym Hero,PowerStack,pop,energetic,0.95,140,0.80,0.90,0.05
+6,City Bloom,Neon Palms,pop,happy,0.78,120,0.85,0.82,0.15
+7,Ocean Breath,Tide Walker,classical,peaceful,0.20,60,0.60,0.30,0.90
+8,Rooftop Lights,Echo Lane,pop,romantic,0.65,110,0.75,0.70,0.25
+9,Deep Forest,Fern & Root,folk,peaceful,0.30,90,0.65,0.55,0.85
+10,Voltage Crisis,Static Surge,edm,intense,0.95,150,0.40,0.92,0.02
+11,Crystal Waltz,Aria Nova,classical,peaceful,0.18,56,0.70,0.25,0.95
+12,Neon Jungle,Bass Cartel,edm,energetic,0.90,145,0.55,0.95,0.03
+13,Iron Anthem,Shatter Bone,metal,intense,0.97,160,0.20,0.45,0.02
+14,Dusty Road,Clay & Crow,country,nostalgic,0.45,95,0.65,0.60,0.70
+15,Island Vibe,Kumba Waves,reggae,happy,0.55,100,0.80,0.72,0.45
+16,Seoul Glow,Stellar K,kpop,happy,0.80,130,0.85,0.88,0.12
+17,Autumn Leaves,The Wanderers,folk,nostalgic,0.35,85,0.55,0.50,0.82
+18,Lagos Nights,Afro Pulse,afrobeats,happy,0.75,118,0.88,0.90,0.20
+19,Sad Robot,Analog Heart,lofi,melancholic,0.28,68,0.25,0.48,0.78
+20,Burning Sky,Ember Route,rock,intense,0.88,138,0.30,0.55,0.08
+21,Petal Rain,Hana Grove,classical,peaceful,0.15,52,0.72,0.22,0.97
+22,Electric Dream,Future Nova,edm,energetic,0.93,148,0.60,0.93,0.04
+23,Country Hearts,Blue Ridge,country,nostalgic,0.40,92,0.70,0.62,0.75
+24,Dancehall Fever,Riddim King,reggae,energetic,0.72,110,0.82,0.88,0.30
+25,Galaxy Pop,Nova Star,kpop,happy,0.82,132,0.88,0.90,0.10
