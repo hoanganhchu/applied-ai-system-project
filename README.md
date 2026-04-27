@@ -28,29 +28,42 @@ This extended system transforms the original prototype into a full **RAG + Agent
 
 ## System Architecture
 
-![System Architecture](assets/system_architecture.svg)
-
-Architecture source file: `assets/system_architecture.svg`
-
-```mermaid
-flowchart LR
-    U[User profile\ngenre, mood, energy, valence] --> P[Plan]
-    P --> R[Retrieve candidates]
-    R --> S[Score songs]
-    S --> Q[Quality check]
-    Q -->|pass| O[Top-K recommendations]
-    Q -->|retry| R
-
-    T[Test harness] -.-> Q
+```
+┌─────────────────────────────────────────────────────────────┐
+│                    USER INPUT (Profile)                      │
+│        genre · mood · target_energy · target_valence        │
+└────────────────────────┬────────────────────────────────────┘
+                         │
+                    ┌────▼────┐
+                    │  AGENT  │  Plan → Act → Reflect loop
+                    └────┬────┘
+          ┌──────────────┼──────────────┐
+          │              │              │
+     ┌────▼────┐   ┌─────▼─────┐  ┌────▼─────┐
+     │  PLAN   │   │    ACT    │  │ REFLECT  │
+     │         │   │           │  │          │
+     │ Decide  │   │ Retriever │  │ Avg conf │
+     │ energy  │──▶│ filters   │  │ ≥ 0.45?  │
+     │ band &  │   │ catalog   │──▶│          │
+     │ filters │   │           │  │ YES→done │
+     └─────────┘   │  Scorer   │  │ NO→retry │
+                   │ ranks top │  └────┬─────┘
+                   │    K      │       │ (relax filters)
+                   └─────┬─────┘  ┌────▼─────┐
+                         │        │  RETRY   │
+                         │        │ No mood  │
+                         │        │ filter,  │
+                         │        │ open band│
+                         │        └──────────┘
+                    ┌────▼────┐
+                    │ OUTPUT  │
+                    │ Top-K   │
+                    │ Songs + │
+                    │ Reasons │
+                    └─────────┘
 ```
 
-This is the actual runtime flow:
-
-- `Plan` selects the retrieval strategy from the profile
-- `Retrieve candidates` filters the catalog before scoring
-- `Score songs` ranks the filtered songs with explanations and confidence
-- `Quality check` decides whether to return the results or retry with relaxed filters
-- `Test harness` runs the same pipeline on fixed cases to measure reliability
+**Data flow:** User Profile → Agent PLAN (retrieval strategy) → Retriever (RAG candidate filtering) → Scorer (weighted attribute matching) → Agent REFLECT (quality gate) → Recommendations
 
 ---
 
